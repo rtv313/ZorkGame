@@ -4,7 +4,9 @@
 #include "stdafx.h"
 #include <iostream>
 #include <string>
+#include <vector>
 #include <conio.h>
+#include "Helpers.h"
 
 using namespace std;
 
@@ -13,7 +15,10 @@ int main()
 {
 	char key;
 	string player_input;
-	cout << "Welcome to my Zork Game\n";
+	vector<string> args;
+	args.reserve(10);
+
+	cout << "Welcome to my Zork Detective Game\n";
 	cout << "--------------\n";
 	
 
@@ -34,8 +39,7 @@ int main()
 				
 			}
 			else {
-				cout << "Tokenize";
-				cout << endl;
+				Tokenize(player_input, args); // separate each word assign each word to a vector cell , next interpretate instrucctions 
 			}
 
 			//Interpretate instructions
