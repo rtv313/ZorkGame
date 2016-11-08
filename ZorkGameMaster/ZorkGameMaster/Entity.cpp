@@ -4,10 +4,11 @@
 
 
 
-Entity::Entity(const char* Name, const char* Description)
+Entity::Entity(const char* Name, const char* Description,Entity* Parent =NULL)
 {
 	this->Name = Name;
 	this->Description = Description;
+	this->Parent = Parent;
 	Type = ENTITY;
 }
 

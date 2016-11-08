@@ -21,7 +21,7 @@ public:
 	list<Entity*> Container;
 	Entity * Parent;
 	//Methods
-	Entity(const char* Name, const char* Description);
+	Entity(const char* Name, const char* Description, Entity* Parent);
 	~Entity();
 	virtual void Look() const;
 	virtual void Action();
