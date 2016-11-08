@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "Entity.h"
-#include <iostream>
+
 
 
 
@@ -52,12 +52,24 @@ bool Entity::Find(Entity* entity)const {
 
 }
 
-Entity* Entity::Find(EntityType Type) const
-{
+Entity* Entity::Find(EntityType type) const{
 	for (list<Entity*>::const_iterator it = Container.begin(); it != Container.cend(); ++it)
 	{
-		if ((*it)->Type == Type) {
+		if ((*it)->Type == type) {
 			return *it;
+		}
+	}
+
+	return NULL;
+}
+
+Entity* Entity::Find(const string& Name, EntityType Type) const {
+	for (list<Entity*>::const_iterator it = Container.begin(); it != Container.cend(); ++it)
+	{
+		if ((*it)->Type == Type)
+		{
+			if (((*it)->Name==Name))
+				return *it;
 		}
 	}
 

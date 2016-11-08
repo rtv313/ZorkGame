@@ -7,10 +7,11 @@ using namespace std;
 
 enum EntityType {
 	ENTITY,
-	CREATURE,
-	PLAYER,
 	ROOM,
-	ITEM
+	EXIT,
+	ITEM,
+	CREATURE,
+	PLAYER
 };
 
 class Entity
