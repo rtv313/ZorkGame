@@ -12,6 +12,6 @@
 		while (*str != ' ' && *str) //mientras no sea vacio y no sea null
 			str++;
 
-		arguments.push_back(string(begin, str));
+		arguments.push_back(string(begin, str));// crea nuevo string a partir de la primera posicion y la ultima, luego lo agrega al vector de argumentos
 	} while (0 != *str++);
 }
