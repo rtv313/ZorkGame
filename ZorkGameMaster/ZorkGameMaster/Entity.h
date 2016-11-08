@@ -1,7 +1,8 @@
 #pragma once
 #include <string>
 #include <list>
-
+#include <vector>
+#include <iostream>
 using namespace std;
 
 enum EntityType {
