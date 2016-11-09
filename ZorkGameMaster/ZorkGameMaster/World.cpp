@@ -35,11 +35,18 @@ World::World(){
 
 	
 	vector<string> args;
-	
-	args.push_back("Move");
-	args.push_back("Room2");
-	player->Move(args);
-	Room2->Look();
+	args.push_back("Take");
+	args.push_back("Item1");
+	player->Take(args);
+	player->Inventory();
+	args.clear();
+	args.push_back("Equip");
+	args.push_back("Item1");
+	player->Equip(args);
+	args.clear();
+	args.push_back("UnEquip");
+	args.push_back("Item1");
+	player->UnEquip(args);
 
 }
 

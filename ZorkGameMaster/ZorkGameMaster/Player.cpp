@@ -76,6 +76,8 @@ bool Player::Take(const vector<string>& args) {
 
 		cout << "\nYou take " << item->Name << ".\n";
 		item->ChangeParent(this);
+
+		return true;
 	}
 
 	return false;
@@ -196,7 +198,7 @@ bool Player::UnEquip(const vector<string>& args) {
 		return false;
 	}
 
-	cout << "\n You un-equip " << item->Name << "...\n";
+	cout << "\nYou un-equip " << item->Name << "...\n";
 
 	return true;
 }
