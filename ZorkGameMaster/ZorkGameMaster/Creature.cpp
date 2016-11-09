@@ -93,6 +93,8 @@ bool Creature::Drop(const vector<string>& args) {
 		cout << Name << " drops " << item->Name << "...\n";
 
 	item->ChangeParent(Parent);
+
+	return true;
 }
 
 void Creature::Inventory()const {
@@ -157,6 +159,7 @@ bool Creature::UnEquip(const vector<string>& args) {
 
 	if (PlayerInRoom())
 		cout << Name << " un-equips " << item->Name << "...\n";
+	return true;
 }
 
 

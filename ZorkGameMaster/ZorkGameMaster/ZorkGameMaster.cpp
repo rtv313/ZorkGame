@@ -6,8 +6,10 @@
 #include <string>
 #include <vector>
 #include <conio.h>
+#include <stdlib.h>
+#include <stdio.h>
 #include "Helpers.h"
-
+#include "World.h"
 using namespace std;
 
 
@@ -22,31 +24,34 @@ int main()
 	cout << "--------------\n";
 	
 
-	while (1) {
-		if (_kbhit() != 0) {
-			key = _getch();
-			if (key == '\b') {
-				if (player_input.length() > 0) {
-					player_input.pop_back();
-					cout << '\b';
-					cout << " ";
-					cout << '\b';
-				}
-			}
-			else if (key != '\r') {
-				player_input += key;
-				cout << key;
-				
-			}
-			else {
-				Tokenize(player_input, args); // separate each word assign each word to a vector cell , next interpretate instrucctions 
-			}
+	//while (1) {
+	//	if (_kbhit() != 0) {
+	//		key = _getch();
+	//		if (key == '\b') {
+	//			if (player_input.length() > 0) {
+	//				player_input.pop_back();
+	//				cout << '\b';
+	//				cout << " ";
+	//				cout << '\b';
+	//			}
+	//		}
+	//		else if (key != '\r') {
+	//			player_input += key;
+	//			cout << key;
+	//			
+	//		}
+	//		else {
+	//			Tokenize(player_input, args); // separate each word assign each word to a vector cell , next interpretate instrucctions 
+	//		}
 
-			//Interpretate instructions
-		}
-	}
+	//		//Interpretate instructions
+	//	}
+	//}
 
-	cout << "\nThanks for playing,Bye\n";
+	//cout << "\nThanks for playing,Bye\n";
+
+	World MyWorld;
+	system("pause"); //this pauses the program until you press any key 
     return 0;
 }
 

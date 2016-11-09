@@ -1,9 +1,11 @@
 #pragma once
 #include<vector>
+#include <list>
 #include<string>
 #include <iostream>
 #include "Item.h"
 #include "Room.h"
+#include "Creature.h"
 #include "Player.h"
 
 class World
@@ -16,6 +18,7 @@ public:
 
 private:
 	vector<Entity*> Entities;
-	Player * Player;
+	list<Entity*> Locations;
+	Player * player;
 };
 
