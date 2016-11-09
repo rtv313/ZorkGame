@@ -20,15 +20,16 @@ void Item::Look()const {
 	cout << "\n" << Name << "\n";
 	cout << Description << "\n";
 
-	list<Entity*> Stuff;
-	FindAll(ITEM, Stuff);
+	list<Entity*> ItemsInside;
+	FindAll(ITEM, ItemsInside);
 
-	if (Stuff.size() > 0)
+	if (ItemsInside.size() > 0)
 	{
 		cout << "It contains: " << "\n";
-		for (list<Entity*>::const_iterator it = Stuff.begin(); it != Stuff.cend(); ++it) {
+		for (list<Entity*>::const_iterator it = ItemsInside.begin(); it != ItemsInside.cend(); ++it) {
 			cout << (*it)->Name << "\n";
 		}
+	}else {
+		cout << "There is nothing attach or inside in this Item: " << "\n";
 	}
-	
 }

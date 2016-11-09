@@ -15,9 +15,9 @@ World::World(){
 	Locations.push_back(Room2);
 	Locations.push_back(Room3);
 
-	Creature * Creature1 = new Creature("Creature1", "Creature For Testing", Room1, Locations);
-	Creature * Creature2 = new Creature("Creature2", "Creature For Testing", Room1, Locations);
-	Creature * Creature3 = new Creature("Creature3", "Creature For Testing", Room2, Locations);
+	Creature * Creature1 = new Creature("Creature1", "Creature For Testing", Room1, Locations,true);
+	Creature * Creature2 = new Creature("Creature2", "Creature For Testing", Room1, Locations, true);
+	Creature * Creature3 = new Creature("Creature3", "Creature For Testing", Room2, Locations, true);
 
 	Entities.push_back(Creature1);
 	Entities.push_back(Creature2);
@@ -35,8 +35,20 @@ World::World(){
 
 	// Testing rooms 
 
+	//Room1->Look();
+	/*Item* test =(Item *) Room1->Find(ITEM);
+	test->Look();
+*/
+	// Testing Items
+	//Item1->Look();
+	/*Item1->ChangeParent(Room2);
 	Room1->Look();
+	Room2->Look();*/
 
+	// Testing Creatures
+	vector<string> args;
+	args.push_back("Room1");
+	Creature1->Move(args);
 }
 
 

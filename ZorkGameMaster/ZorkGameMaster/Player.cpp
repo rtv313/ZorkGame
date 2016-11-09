@@ -2,7 +2,7 @@
 #include "Player.h"
 
 
-Player::Player(const char* Name, const char* Description, Room* Room, const list<Entity*> Locations):Creature(Name,Description,Room,Locations)
+Player::Player(const char* Name, const char* Description, Room* Room, const list<Entity*> Locations):Creature(Name,Description,Room,Locations,true)
 {
 	Type = PLAYER;
 }
