@@ -50,22 +50,26 @@ void Creature::Look(const vector<string>& args)const {
 bool Creature::Take(const vector<string> & args) {
 	Item* item = (Item*)Parent->Find(args[1], ITEM); //Pick from room
 
-	if (args.size() > 1)
+	if (args.size() > 2)
 	{
 		// we could pick something from a container in our inventory ...
-		if (item == NULL)
+		if (item == NULL) {
 			item = (Item*)Find(args[1], ITEM);
+		}
 
-		if (item == NULL)
+		if (item == NULL) {
 			return false;
+		}
 
 		Item* subitem = (Item*)item->Find(args[3], ITEM);
 
-		if (subitem == NULL)
+		if (subitem == NULL) {
 			return false;
+		}
 
-		if (PlayerInRoom())
+		if (PlayerInRoom()) {
 			cout << Name << " looks into " << item->Name << "...\n";
+		}
 
 		item = subitem;
 	}
@@ -78,20 +82,24 @@ bool Creature::Take(const vector<string> & args) {
 
 	item->ChangeParent(this);
 
+
 	return true;
 }
 
 bool Creature::Drop(const vector<string>& args) {
-	if (!Alive)
+	if (!Alive) {
 		return false;
+	}
 
 	Item* item = (Item*)Find(args[1], ITEM);
 
-	if (item == NULL)
+	if (item == NULL) {
 		return false;
+	}
 
-	if (PlayerInRoom())
+	if (PlayerInRoom()) {
 		cout << Name << " drops " << item->Name << "...\n";
+	}
 
 	item->ChangeParent(Parent);
 
@@ -104,17 +112,19 @@ void Creature::Inventory()const {
 
 	if (items.size() == 0)
 	{
-		cout << Name << " does not own any items\n";
+		cout << Name << " does not have items\n";
 		return;
 	}
 
-	cout << "\n" << Name << " owns:\n";
+	cout << "\n" << Name << " have:\n";
 	for (list<Entity*>::const_iterator it = items.begin(); it != items.cend(); ++it)
 	{
-		if (*it == Tool)
+		if (*it == Tool) {
 			cout << (*it)->Name << " (as Tool)\n";
-		else
+		}
+		else {
 			cout << (*it)->Name << "\n";
+		}
 	}
 }
 

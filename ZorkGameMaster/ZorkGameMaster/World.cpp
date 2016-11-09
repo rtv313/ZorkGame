@@ -46,9 +46,24 @@ World::World(){
 	Room2->Look();*/
 
 	// Testing Creatures
+	Room1->Look();
+	cout << "\n";
 	vector<string> args;
+	args.push_back("Move");
 	args.push_back("Room1");
-	Creature1->Move(args);
+	Creature3->Move(args);
+	args.clear();
+	args.push_back("Take");
+	args.push_back("Item1");
+	args.push_back("Take");
+	args.push_back("Item2");
+	Creature3->Take(args);
+	args.clear();
+	args.push_back("Drop");
+	args.push_back("Item2");
+	Creature3->Drop(args);
+	Creature3->Inventory();
+	args.clear();
 }
 
 
