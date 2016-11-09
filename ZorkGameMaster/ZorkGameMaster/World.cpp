@@ -33,37 +33,14 @@ World::World(){
 	
 	Entities.push_back(player);
 
-	// Testing rooms 
-
-	//Room1->Look();
-	/*Item* test =(Item *) Room1->Find(ITEM);
-	test->Look();
-*/
-	// Testing Items
-	//Item1->Look();
-	/*Item1->ChangeParent(Room2);
-	Room1->Look();
-	Room2->Look();*/
-
-	// Testing Creatures
-	Room1->Look();
-	cout << "\n";
+	
 	vector<string> args;
+	
 	args.push_back("Move");
-	args.push_back("Room1");
-	Creature3->Move(args);
-	args.clear();
-	args.push_back("Take");
-	args.push_back("Item1");
-	args.push_back("Take");
-	args.push_back("Item2");
-	Creature3->Take(args);
-	args.clear();
-	args.push_back("Drop");
-	args.push_back("Item2");
-	Creature3->Drop(args);
-	Creature3->Inventory();
-	args.clear();
+	args.push_back("Room2");
+	player->Move(args);
+	Room2->Look();
+
 }
 
 

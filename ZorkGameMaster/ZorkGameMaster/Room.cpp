@@ -24,7 +24,10 @@ void Room::Look()const {
 		if ((*it)->Type == CREATURE) {
 			Creature * creature = (Creature*)*it;
 			cout << "\nCharacter:" << creature->Name;
-
+		}
+		else if ((*it)->Type == PLAYER) {
+			Player * player = (Player*)*it;
+			cout << "\nPlayer:" << player->Name;
 		}
 	}
 

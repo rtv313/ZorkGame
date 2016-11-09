@@ -2,6 +2,7 @@
 #include "Entity.h"
 #include "Item.h"
 #include "Creature.h"
+#include "Player.h"
 #include <string>
 #include <list>
 

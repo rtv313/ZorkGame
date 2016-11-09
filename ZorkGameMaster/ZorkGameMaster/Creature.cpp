@@ -130,15 +130,17 @@ void Creature::Inventory()const {
 
 
 bool Creature::Equip(const vector<string>& args) {
-	if (!Alive)
+	if (!Alive) {
 		return false;
+	}
 
 	Item* item = (Item*)Find(args[1], ITEM);
 
-	if (item == NULL)
+	if (item == NULL) {
 		return false;
+	}
 
-	switch (item->Type)
+	switch (item->Item_Type)
 	{
 	case TOOL:
 		Tool = item;
@@ -148,28 +150,34 @@ bool Creature::Equip(const vector<string>& args) {
 		return false;
 	}
 
-	if (PlayerInRoom())
+	if (PlayerInRoom()) {
 		cout << Name << " equips " << item->Name << "...\n";
+	}
 
 	return true;
 }
 
 bool Creature::UnEquip(const vector<string>& args) {
-	if (!Alive)
+	if (!Alive) {
 		return false;
+	}
 
 	Item* item = (Item*)Find(args[1], ITEM);
 
-	if (item == NULL)
+	if (item == NULL) {
 		return false;
+	}
 
-	if (item == Tool)
+	if (item == Tool) {
 		Tool = NULL;
-	else
+	}
+	else {
 		return false;
+	}
 
-	if (PlayerInRoom())
+	if (PlayerInRoom()) {
 		cout << Name << " un-equips " << item->Name << "...\n";
+	}
 	return true;
 }
 
