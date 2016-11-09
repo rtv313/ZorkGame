@@ -1,9 +1,8 @@
 #pragma once
 #include "Entity.h"
 #include "Item.h"
-#include "Room.h"
-#include "Entity.h"
 
+class Room;
 class Creature :
 	public Entity
 {
@@ -11,7 +10,7 @@ public:
 	Item* Tool;
 	bool Alive;
 	list<Entity*> Locations;
-	Creature(const char* name, const char* description, Room* room,const list<Entity*> Locations);
+	Creature(const char* Name, const char* Description, Room* Room,const list<Entity*> Locations);
 	~Creature();
 	virtual bool Move(const vector<string>& args);
 	virtual void Look(const vector<string>& args) const;

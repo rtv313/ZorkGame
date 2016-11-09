@@ -1,5 +1,7 @@
 #pragma once
 #include "Entity.h"
+#include "Item.h"
+#include "Creature.h"
 #include <string>
 #include <list>
 

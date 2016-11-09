@@ -19,13 +19,22 @@ void Room::Look()const {
 	cout << "\n" << Name << "\n";
 	cout << "\n" << Description << "\n";
 
-	for (list<Entity*>::const_iterator it = Container.begin(); it != Container.cend(); ++it)
-	{
-		if ((*it)->Type == ITEM)
-		{
-			/*Item* item = (Item*)*it;
-			cout << "\nThere is an item here: " << item->name;*/
-			cout << "Displaying Items" << "\n";
+	// Displays Creatures in Room
+	for (list<Entity*>::const_iterator it = Container.begin(); it != Container.cend(); ++it) {
+		if ((*it)->Type == CREATURE) {
+			Creature * creature = (Creature*)*it;
+			cout << "\nCharacter:" << creature->Name;
+
 		}
 	}
+
+	// Displays Items in Room
+	for (list<Entity*>::const_iterator it = Container.begin(); it != Container.cend(); ++it){
+		if ((*it)->Type == ITEM){
+			Item* item = (Item*)*it;
+			cout << "\nItem:" << item->Name;
+			
+		}
+	}
+
 }

@@ -51,6 +51,8 @@ int main()
 	//cout << "\nThanks for playing,Bye\n";
 
 	World MyWorld;
+
+	MyWorld.SendInstrucction(args);
 	system("pause"); //this pauses the program until you press any key 
     return 0;
 }

@@ -33,6 +33,10 @@ World::World(){
 	
 	Entities.push_back(player);
 
+	// Testing rooms 
+
+	Room1->Look();
+
 }
 
 
@@ -46,4 +50,5 @@ World::~World(){
 
 void World::SendInstrucction(const vector<string>& args){
 
+	
 }
