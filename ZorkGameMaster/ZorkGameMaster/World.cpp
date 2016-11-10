@@ -3,50 +3,43 @@
 
 
 World::World(){
-	Room * Room1 = new Room("Room1","First Room Testing");
-	Room * Room2 = new Room("Room2", "Second Room Testing");
-	Room * Room3 = new Room("Room2", "Second Room Testing");
+	Room * Forense = new Room("Forense","Forense Room Here is where we analyzed dead bodies");
+	Room * Evidence = new Room("Evidence", "Evidence Room where we bring all objects from crime scene");
+	Room * Witness = new Room("Witness", "Room where are the two witness of the murder");
+	Room * Office = new Room("Office","You´re Personal office");
+	Room * Suspects = new Room("Suspects","Room where are the two suspects of the murder");
 
-	Entities.push_back(Room1);
-	Entities.push_back(Room2);
-	Entities.push_back(Room3);
+	Entities.push_back(Forense);
+	Entities.push_back(Evidence);
+	Entities.push_back(Witness);
+	Entities.push_back(Office);
+	Entities.push_back(Suspects);
 
-	Locations.push_back(Room1);
-	Locations.push_back(Room2);
-	Locations.push_back(Room3);
+	Locations.push_back(Forense);
+	Locations.push_back(Evidence);
+	Locations.push_back(Witness);
+	Locations.push_back(Office);
+	Locations.push_back(Suspects);
 
-	Creature * Creature1 = new Creature("Creature1", "Creature For Testing", Room1, Locations,true);
-	Creature * Creature2 = new Creature("Creature2", "Creature For Testing", Room1, Locations, true);
-	Creature * Creature3 = new Creature("Creature3", "Creature For Testing", Room2, Locations, true);
+	//Office Objects
+	Item * Laptop = new Item("Laptop", "Help to get info about suspects", Office, TOOL);
+	Item * Analizer = new Item("Analizer", "Help to analize objects for more info", Office, TOOL);
+	Item * NoteBook = new Item("NoteBook", "Write Notes about the case", Office, TOOL);
 
-	Entities.push_back(Creature1);
-	Entities.push_back(Creature2);
-	Entities.push_back(Creature3);
+	Entities.push_back(Laptop);
+	Entities.push_back(Analizer);
+	Entities.push_back(NoteBook);
 
-	Item * Item1 = new Item("Item1","Item for testing",Room1,TOOL);
-	Item * Item2 = new Item("Item2", "Item inside Item1 for testing", Item1, TOOL);
+	//Evidence Room Objects
+	Item * EvidenceBox = new Item("EvidenceBox","Contains objects related to the murder",Evidence,TOOL);
+	Item * Pistol = new Item("Pistol", "Pistol found in the murder scene", EvidenceBox, EVIDENCE);
+	Item * Pictures = new Item("Pictures", "Pictures take it from the murder scene", EvidenceBox, EVIDENCE);
 
-	Entities.push_back(Item1);
-	Entities.push_back(Item2);
-
-	player = new Player("Player","Player Test",Room1,Locations);
 	
+	player = new Player("Player","Player Test", Suspects,Locations);
 	Entities.push_back(player);
 
-	
-	vector<string> args;
-	args.push_back("Take");
-	args.push_back("Item1");
-	player->Take(args);
-	player->Inventory();
-	args.clear();
-	args.push_back("Equip");
-	args.push_back("Item1");
-	player->Equip(args);
-	args.clear();
-	args.push_back("UnEquip");
-	args.push_back("Item1");
-	player->UnEquip(args);
+
 
 }
 
@@ -61,5 +54,7 @@ World::~World(){
 
 void World::SendInstrucction(const vector<string>& args){
 
-	
+	// Separate instruccions by number of parameters also check the false and bool of each object
+
+
 }

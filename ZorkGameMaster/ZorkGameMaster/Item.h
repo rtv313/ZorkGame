@@ -4,7 +4,9 @@
 
 enum ItemType
 {
-	TOOL
+	TOOL,
+	EVIDENCE,
+	NOTE
 };
 
 class Item :

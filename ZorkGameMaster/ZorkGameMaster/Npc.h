@@ -6,5 +6,6 @@ class Npc :
 public:
 	Npc(const char* Name, const char* Description, Room* Room, const list<Entity*> Locations,bool Alive);
 	~Npc();
+
 };
 
