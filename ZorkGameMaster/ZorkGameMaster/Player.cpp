@@ -227,25 +227,41 @@ bool Player::UseObject(const vector<string> &args) {
 		}
 		cout << "\nThe Suspect is not in the room";
 		return false;
-	}// Tool PDA
+	}
 
 	if (Tool->Name == "Notebook") {
 		list<Entity*> Notes;
 		Tool->FindAll(ITEM, Notes);
 
+		if (Notes.size() <= 0) {
+			cout << "\nYou dont have notes";
+			return false;
+		}
+
+		if (args[1] == "List") {
+			cout << "\nNotes in you're Notebook:";
+		}
+
 		for (list<Entity*>::const_iterator it = Notes.begin(); it != Notes.cend(); ++it)
 		{
-			if ((*it)->Name == args[2]) {
+			if ((*it)->Name == args[2] && args[1] != "List") {
 				cout << "\nReading Note:"<<(*it)->Name;
-				cout << "\n Content" << (*it)->Name << " " << (*it)->Description;
+				cout << "\n Content:" << " " << (*it)->Description;
 				return true;
+			}
+			else {
+				cout << "\nReading Note:" << (*it)->Name;
+				cout << "\n Content:" << " " << (*it)->Description;
 			}
 
 		}
 
-		cout << "\nThe Note is not in the Notebook";
-		return false;
-	}// Tool PDA
+		if (args[1] != "List") {
+			cout << "\nThat Note is not in the Notebook";
+			return false;
+		}
+		return true;
+	}
 
 }
 
