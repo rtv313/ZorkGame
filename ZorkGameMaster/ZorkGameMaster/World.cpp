@@ -83,5 +83,62 @@ void World::SendInstrucction(const vector<string>& args){
 
 	// Separate instruccions by number of parameters also check the false and bool of each object
 
+	switch (args.size())
+	{
 
+	case 1:
+		if (args[0] == "Map") {
+			player->CheckMap();
+		}
+		else if (args[0]=="Help") {
+			player->Help();
+		}
+		else if (args[0] == "Quit") {
+			cout << "\nQuit";
+		}
+		else if (args[0] == "Look") {
+			cout << "\nLook";
+		}
+		else if (args[0] == "Inventary") {
+			cout << "\nInventory";
+		}
+		else {
+			cout << "\n Bad Instruction";
+		}
+		break;
+
+	case 2:
+		if (args[0] == "Move") {
+			
+		}
+		else if (args[0] == "Equip") {
+
+		}
+		else if (args[0] == "UnEquip") {
+
+		}
+		else if (args[0] == "Talk") {
+
+		}else {
+			cout << "\n Bad Instruction";
+		}
+		break;
+
+	case 3:
+		if (args[0] == "PDA" && args[1]=="SCAN") {
+			
+		}else if (args[0] == "Notebook" && args[1]=="READ"){
+
+		}else if (args[0] == "Notebook" && args[1] == "LIST") {
+			
+		}else {
+			cout << "\n Bad Instruction";
+		}
+
+		break;
+
+	default:
+		cout << "\n Bad Instruction";
+		break;
+	}
 }

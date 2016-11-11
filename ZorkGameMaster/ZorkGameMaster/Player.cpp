@@ -219,8 +219,7 @@ bool Player::UseObject(const vector<string> &args) {
 		for (list<Entity*>::const_iterator it = CreaturesInRoom.begin(); it != CreaturesInRoom.cend(); ++it)
 		{
 			if ((*it)->Name == args[2]){
-				cout << "\nScanning and Making Profile of Suspect \n Profile:";
-				cout << "\n" << (*it)->Name <<" "<< (*it)->Description;
+				cout << "\nScanning and Making Profile of Suspect \n Profile:" << "\n" << (*it)->Name <<" "<< (*it)->Description;
 				// Create Note and Add To notebook
 				return true;
 			}
@@ -245,13 +244,11 @@ bool Player::UseObject(const vector<string> &args) {
 		for (list<Entity*>::const_iterator it = Notes.begin(); it != Notes.cend(); ++it)
 		{
 			if ((*it)->Name == args[2] && args[1] != "List") {
-				cout << "\nReading Note:"<<(*it)->Name;
-				cout << "\n Content:" << " " << (*it)->Description;
+				cout << "\nReading Note:"<<(*it)->Name << "\n Content:" << " " << (*it)->Description;
 				return true;
 			}
 			else {
-				cout << "\nReading Note:" << (*it)->Name;
-				cout << "\n Content:" << " " << (*it)->Description;
+				cout << "\nReading Note:" << (*it)->Name << "\n Content:" << " " << (*it)->Description;
 			}
 
 		}
@@ -265,4 +262,46 @@ bool Player::UseObject(const vector<string> &args) {
 
 }
 
+void Player::CheckMap() {
 
+	for (list<Entity*>::const_iterator it = Locations.begin(); it != Locations.cend(); ++it)
+	{
+		cout << "\nName:" << (*it)->Name<<" Description:"<< (*it)->Description;
+		
+	}
+
+	return;
+}
+
+void Player::Help() {
+
+	string message = "\nWelcome to my Zork Detective Game";
+
+	message += "\nAbout: In this game you must find the suspect that commit the murder you must analize evidence,corpse,talk to suspects and witness,";
+	message += "\nINSTRUCTIONS:";
+
+	message += "\nPLAYER ACTIONS:";
+
+	message += "\n\"Help\" = Display Instrucctions";
+	message += "\n\"Map\" = Display a list of the rooms";
+	message += "\n\"Quit\" = Close the game";
+	message += "\n\"Look\" = Show you a list of the characters and stuffs in the room";
+	message += "\n\"Inventary\" = Displays the items you have";
+
+	// Two Parameters
+	message += "\n \"Look\" {ObjectName} ,this allows you to look inside Containers";
+	message += "\n \"Move\" {RoomName} ,this allows you to move between rooms";
+	message += "\n \"Take\" {ItemName} ,this allows you to take an item in the room";
+	message += "\n \"Equip\" {ItemName} ,this allows you to equip an item from you're inventory";
+	message += "\n \"UnEquip\" {ItemName} ,this allows you to Unequip an item and return it to the inventory";
+	message += "\n \"Talk\" {Character Name} ,this allows you to start a conversation with a character who is in the same room";
+	message += "\n \"Sentence\" {SuspectName} ,this allows you to end the game choosing who is the murder";
+
+	// Three Parameters
+	message += "\nPLAYER TOOLS: \n You must have and equiped this items before you can use them.";
+	message + "\n Tools and how to use them:";
+	message += "\n \"PDA\" \"SCAN\" {EVIDENCE/CHARACTER} ,this allows you to search more info about characters or evidence and add a note to your notebook";
+	message += "\n \"Notebook\" \"READ\" {NoteName} ,this allows you to read a specific note";
+	message += "\n \"Notebook\" \"LIST\" \"NOTES\" ,Display all the notes in you're Notebook";
+	return;
+}

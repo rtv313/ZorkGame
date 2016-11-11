@@ -14,7 +14,8 @@ public:
 	bool Equip(const vector<string>& args);
 	bool UnEquip(const vector<string>& args);
 	bool UseObject(const vector<string>& args);
-	
+	void CheckMap();
+	void Help();
 };
 
 
