@@ -43,7 +43,10 @@ int main()
 			}
 			else {
 				Tokenize(player_input, args); // separate each word assign each word to a vector cell , next interpretate instrucctions 
-			    MyWorld.SendInstrucction(args);
+				if (args[0] == "Quit") { 
+					break; 
+				}
+				MyWorld.SendInstrucction(args);
 			}
 		}
 	}

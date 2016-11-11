@@ -10,7 +10,7 @@ public:
 	Item* Tool;
 	bool Alive;
 	list<Entity*> Locations;
-	Creature(const char* Name, const char* Description, Room* Room,const list<Entity*> Locations,bool Alive);
+	Creature(const char* Name, const char* Description, Room* Room,const list<Entity*> &Locations,bool Alive);
 	~Creature();
 	virtual bool Move(const vector<string>& args);
 	virtual void Look(const vector<string>& args) const;

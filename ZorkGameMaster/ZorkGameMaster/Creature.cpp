@@ -3,7 +3,7 @@
 #include "Creature.h"
 
 
-Creature::Creature(const char* Name, const char*Description, Room* Room, list<Entity*> const Locations,bool Alive):
+Creature::Creature(const char* Name, const char*Description, Room* Room, list<Entity*> const &Locations,bool Alive):
 	Entity(Name,Description,(Entity *)Room)
 {
 	Type = CREATURE;

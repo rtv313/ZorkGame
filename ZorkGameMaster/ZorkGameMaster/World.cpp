@@ -65,6 +65,7 @@ World::World(){
 	args.push_back("Note1");
 
 	player->UseObject(args);
+	player->CheckMap();
 	args.clear();
 
 
@@ -92,9 +93,6 @@ void World::SendInstrucction(const vector<string>& args){
 		}
 		else if (args[0]=="Help") {
 			player->Help();
-		}
-		else if (args[0] == "Quit") {
-			cout << "\nQuit";
 		}
 		else if (args[0] == "Look") {
 			cout << "\nLook";
