@@ -39,7 +39,7 @@ World::World(){
 
 	Creature * prisioner1= new Creature("Prisioner1", "Suspect", Suspects, Locations,true);
 
-	Player* player = new Player("Player","Player Test", Suspects,Locations);
+	player = new Player("Player","Player Test", Suspects,Locations);
 
 	Item * Notebook = new Item("Notebook", "Contains objects related to the murder", Suspects, TOOL);
 	Item * Note1 = new Item("Note1", "Note Content", Notebook, NOTE);
