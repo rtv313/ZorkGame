@@ -11,3 +11,8 @@ Npc::Npc(const char* Name, const char* Description, Room* Room, const list<Entit
 Npc::~Npc()
 {
 }
+
+void Npc::Speak(Player* player){
+
+	
+}

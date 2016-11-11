@@ -131,7 +131,7 @@ bool Player::Drop(const vector<string>& args) {
 
 void Player::Inventory()const {
 	list<Entity*> items;
-	FindAll(ITEM, items);
+	FindAll(ITEM,items);
 
 	if (items.size() == 0)
 	{
@@ -202,3 +202,51 @@ bool Player::UnEquip(const vector<string>& args) {
 
 	return true;
 }
+
+
+
+bool Player::UseObject(const vector<string> &args) {
+	// arg0 Use , arg1 Object, arg2 Action , arg3 ENTITY
+	if (Tool == NULL || Tool->Name != args[0]) {
+		cout << "\nYou dont have equiped " << args[0];
+		return false;
+	}
+
+	if (Tool->Name == "PDA") {
+		list<Entity*> CreaturesInRoom;
+		Parent->FindAll(CREATURE, CreaturesInRoom);
+
+		for (list<Entity*>::const_iterator it = CreaturesInRoom.begin(); it != CreaturesInRoom.cend(); ++it)
+		{
+			if ((*it)->Name == args[2]){
+				cout << "\nScanning and Making Profile of Suspect \n Profile:";
+				cout << "\n" << (*it)->Name <<" "<< (*it)->Description;
+				// Create Note and Add To notebook
+				return true;
+			}
+		}
+		cout << "\nThe Suspect is not in the room";
+		return false;
+	}// Tool PDA
+
+	if (Tool->Name == "Notebook") {
+		list<Entity*> Notes;
+		Tool->FindAll(ITEM, Notes);
+
+		for (list<Entity*>::const_iterator it = Notes.begin(); it != Notes.cend(); ++it)
+		{
+			if ((*it)->Name == args[2]) {
+				cout << "\nReading Note:"<<(*it)->Name;
+				cout << "\n Content" << (*it)->Name << " " << (*it)->Description;
+				return true;
+			}
+
+		}
+
+		cout << "\nThe Note is not in the Notebook";
+		return false;
+	}// Tool PDA
+
+}
+
+

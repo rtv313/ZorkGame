@@ -35,10 +35,37 @@ World::World(){
 	Item * Pistol = new Item("Pistol", "Pistol found in the murder scene", EvidenceBox, EVIDENCE);
 	Item * Pictures = new Item("Pictures", "Pictures take it from the murder scene", EvidenceBox, EVIDENCE);
 
-	
-	player = new Player("Player","Player Test", Suspects,Locations);
-	Entities.push_back(player);
+	//NPC Objects 
 
+	Creature * prisioner1= new Creature("Prisioner1", "Suspect", Suspects, Locations,true);
+
+	Player* player = new Player("Player","Player Test", Suspects,Locations);
+
+	Item * Notebook = new Item("Notebook", "Contains objects related to the murder", Suspects, TOOL);
+	Item * Note1 = new Item("Note1", "Note Content", Notebook, NOTE);
+	
+	Entities.push_back(player);
+	Entities.push_back(prisioner1);
+	Entities.push_back(NoteBook);
+
+	vector<string> args;
+	args.push_back("Take");
+	args.push_back("Notebook");
+	player->Take(args);
+	args.clear();
+
+	args.push_back("Equip");
+	args.push_back("Notebook");
+	player->Equip(args);
+
+	args.clear();
+	
+	args.push_back("Notebook");
+	args.push_back("Read");
+	args.push_back("Note1");
+
+	player->UseObject(args);
+	args.clear();
 
 
 }

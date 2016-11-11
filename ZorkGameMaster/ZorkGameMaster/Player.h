@@ -13,7 +13,7 @@ public:
 	void Inventory() const;
 	bool Equip(const vector<string>& args);
 	bool UnEquip(const vector<string>& args);
-	
+	bool UseObject(const vector<string>& args);
 	
 };
 
