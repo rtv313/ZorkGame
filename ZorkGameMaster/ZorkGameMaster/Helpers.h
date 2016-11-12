@@ -6,3 +6,4 @@
 using namespace std;
 
 void Tokenize(const string& line, vector<string>& arguments);
+bool CompareStrings(const string &Line1, const string &Line2);

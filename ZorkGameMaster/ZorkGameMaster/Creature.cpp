@@ -3,7 +3,7 @@
 #include "Creature.h"
 
 
-Creature::Creature(const char* Name, const char*Description, Room* Room, list<Entity*> const &Locations,bool Alive):
+Creature::Creature(const char* Name, const char*Description, Room* Room, list<Entity*> const Locations,bool Alive):
 	Entity(Name,Description,(Entity *)Room)
 {
 	Type = CREATURE;
@@ -22,12 +22,13 @@ bool Creature::Move(const vector<string>& args){
 	}
 		for (list<Entity*>::const_iterator room = Locations.begin(); room != Locations.cend(); ++room)
 		{
-			if ((*room)->Name== args[1]) {
+			if (CompareStrings((*room)->Name, args[1])) {
 				ChangeParent((*room));
+				cout << "\n" << Name << " is in " << args[1];
 				return true;
 			}
 		}
-
+		cout << "\nThat room doesnt exist";
 	return false; //room doesnt exist
 }
 

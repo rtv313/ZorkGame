@@ -7,6 +7,7 @@
 #include "Room.h"
 #include "Creature.h"
 #include "Player.h"
+#include "Helpers.h"
 
 class World
 {
@@ -14,7 +15,7 @@ public:
 	
 	World();
 	~World();
-	void SendInstrucction(const vector<string>& args);
+	void SendInstrucction(const vector<string>& args,bool &ExitFlag);
 
 private:
 	vector<Entity*> Entities;

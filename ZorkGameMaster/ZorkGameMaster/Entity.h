@@ -3,6 +3,7 @@
 #include <list>
 #include <vector>
 #include <iostream>
+#include "Helpers.h"
 using namespace std;
 
 enum EntityType {

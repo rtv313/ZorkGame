@@ -1,10 +1,11 @@
 #pragma once
 #include "Creature.h"
+
 class Player :
 	public Creature
 {
 public:
-	Player(const char* Name, const char* Description, Room* Room, const list<Entity*> &Locations);
+	Player(const char* Name, const char* Description, Room* Room, const list<Entity*> Locations);
 	~Player();
 	
 	void Look(const vector<string>& args) const;
@@ -16,6 +17,7 @@ public:
 	bool UseObject(const vector<string>& args);
 	void CheckMap();
 	void Help();
+	bool Sentence(const vector<string>& args);
 };
 
 

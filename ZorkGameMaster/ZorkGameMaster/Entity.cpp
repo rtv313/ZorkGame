@@ -73,7 +73,7 @@ Entity* Entity::Find(const string& Name, EntityType Type) const {
 	{
 		if ((*it)->Type == Type)
 		{
-			if (((*it)->Name==Name))
+			if ((CompareStrings((*it)->Name,Name)))
 				return *it;
 		}
 	}

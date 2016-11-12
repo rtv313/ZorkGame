@@ -16,8 +16,8 @@ Room::~Room()
 
 void Room::Look()const {
 
-	cout << "\n" << Name << "\n";
-	cout << "\n" << Description << "\n";
+	cout << "\nIn Room" << Name;
+	cout << "\nDescription" << Description;
 
 	// Displays Creatures in Room
 	for (list<Entity*>::const_iterator it = Container.begin(); it != Container.cend(); ++it) {
@@ -36,7 +36,6 @@ void Room::Look()const {
 		if ((*it)->Type == ITEM){
 			Item* item = (Item*)*it;
 			cout << "\nItem:" << item->Name;
-			
 		}
 	}
 

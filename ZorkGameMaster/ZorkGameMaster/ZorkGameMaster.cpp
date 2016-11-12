@@ -10,6 +10,7 @@
 #include <stdio.h>
 #include "Helpers.h"
 #include "World.h"
+
 using namespace std;
 
 
@@ -20,11 +21,10 @@ int main()
 	vector<string> args;
 	args.reserve(10);
 	World MyWorld;
-
+	bool ExitFlag = false;
 	cout << "Welcome to my Zork Detective Game\n";
 	cout << "--------------\n";
 	
-
 	while (1) {
 		if (_kbhit() != 0) {
 			key = _getch();
@@ -43,19 +43,23 @@ int main()
 			}
 			else {
 				Tokenize(player_input, args); // separate each word assign each word to a vector cell , next interpretate instrucctions 
-				if (args[0] == "Quit") { 
+				if (CompareStrings(args[0],"Quit")) { 
 					break; 
 				}
-				MyWorld.SendInstrucction(args);
+
+				if (args.size() > 0 && args[0]!="") {
+					MyWorld.SendInstrucction(args,ExitFlag);
+					if (ExitFlag) { break; }
+				}
+
+				args.clear();
+				player_input.clear();
+				cout << "\n\n";
 			}
 		}
 	}
 
 	cout << "\nThanks for playing,Bye\n";
-
-	
-
-	
 	system("pause"); //this pauses the program until you press any key 
     return 0;
 }

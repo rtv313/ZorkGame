@@ -2,7 +2,7 @@
 #include "Player.h"
 
 
-Player::Player(const char* Name, const char* Description, Room* Room, const list<Entity*> &Locations):Creature(Name,Description,Room,Locations,true)
+Player::Player(const char* Name, const char* Description, Room* Room, const list<Entity*> Locations):Creature(Name,Description,Room,Locations,true)
 {
 	Type = PLAYER;
 }
@@ -18,17 +18,11 @@ void Player::Look(const vector<string>& args) const {
 	{
 		for (list<Entity*>::const_iterator it = Parent->Container.begin(); it != Parent->Container.cend(); ++it)
 		{
-			if ((*it)->Name == args[1]) // Look for certain object
+			if (CompareStrings((*it)->Name,args[1])) // Look for certain object
 			{
 				(*it)->Look();
 				return;
 			}
-		}
-
-		if (args[1]=="me")
-		{
-			cout << "\n" << Name << "\n";
-			cout << Description << "\n";
 		}
 	}
 	else
@@ -49,7 +43,7 @@ bool Player::Take(const vector<string>& args) {
 
 		if (item == NULL)
 		{
-			cout << "\nCannot find '" << args[3] << "' in this room or in your inventory.\n";
+			cout << "\nCannot find '" << args[3] << "' in this room or in your inventory.";
 			return false;
 		}
 
@@ -57,11 +51,11 @@ bool Player::Take(const vector<string>& args) {
 
 		if (subitem == NULL)
 		{
-			cout << "\n" << item->Name << " does not contain '" << args[1] << "'.\n";
+			cout << "\n" << item->Name << " does not contain '" << args[1] << "'.";
 			return false;
 		}
 
-		cout << "\nYou take " << subitem->Name << " from " << item->Name << ".\n";
+		cout << "\nYou take " << subitem->Name << " from " << item->Name << ".";
 		subitem->ChangeParent(this);
 
 	}else if (args.size() == 2){ // Pick From Room
@@ -70,11 +64,11 @@ bool Player::Take(const vector<string>& args) {
 
 		if (item == NULL)
 		{
-			cout << "\nThere is no item here with that name.\n";
+			cout << "\nThere is no item here with that name.";
 			return false;
 		}
 
-		cout << "\nYou take " << item->Name << ".\n";
+		cout << "\nYou take " << item->Name << ".";
 		item->ChangeParent(this);
 
 		return true;
@@ -91,11 +85,11 @@ bool Player::Drop(const vector<string>& args) {
 
 		if (item == NULL)
 		{
-			cout << "\nThere is no item on you with that name.\n";
+			cout << "\nThere is no item on you with that name.";
 			return false;
 		}
 
-		cout << "\nYou drop " << item->Name << "...\n";
+		cout << "\nYou drop " << item->Name << "...";
 		item->ChangeParent(Parent);
 
 		return true;
@@ -107,7 +101,7 @@ bool Player::Drop(const vector<string>& args) {
 
 		if (item == NULL)
 		{
-			cout << "\nCan not find '" << args[1] << "' in your inventory.\n";
+			cout << "\nCan not find '" << args[1] << "' in your inventory.";
 			return false;
 		}
 
@@ -116,11 +110,11 @@ bool Player::Drop(const vector<string>& args) {
 		if (container == NULL)
 		{
 			container = (Item*)Find(args[3], ITEM);
-			cout << "\nCan not find '" << args[3] << "' in your inventory or in the room.\n";
+			cout << "\nCan not find '" << args[3] << "' in your inventory or in the room.";
 			return false;
 		}
 
-		cout << "\nYou put " << item->Name << " into " << container->Name << ".\n";
+		cout << "\nYou put " << item->Name << " into " << container->Name << ".";
 		item->ChangeParent(container);
 
 		return true;
@@ -135,7 +129,7 @@ void Player::Inventory()const {
 
 	if (items.size() == 0)
 	{
-		cout << "\nYou do not own any item.\n";
+		cout << "\nYou do not own any item.";
 		return;
 	}
 
@@ -146,8 +140,6 @@ void Player::Inventory()const {
 		else
 			cout << "\n" << (*it)->Name;
 	}
-
-	cout << "\n";
 }
 
 
@@ -156,7 +148,7 @@ bool Player::Equip(const vector<string>& args) {
 
 	if (item == NULL)
 	{
-		cout << "\nCannot find '" << args[1] << "' is not in your inventory.\n";
+		cout << "\nCannot find '" << args[1] << "' is not in your inventory.";
 		return false;
 	}
 
@@ -167,11 +159,11 @@ bool Player::Equip(const vector<string>& args) {
 		break;
 
 	default:
-		cout << "\n" << item->Name << " cannot be equipped.\n";
+		cout << "\n" << item->Name << " cannot be equipped.";
 		return false;
 	}
 
-	cout << "\nYou equip " << item->Name << "...\n";
+	cout << "\nYou equip " << item->Name << "...";
 
 	return true;
 }
@@ -184,7 +176,7 @@ bool Player::UnEquip(const vector<string>& args) {
 
 	if (item == NULL)
 	{
-		cout << "\n" << item->Name << " is not in your inventory.\n";
+		cout << "\n" << args[1] << " is not in your inventory.";
 		return false;
 	}
 
@@ -194,11 +186,11 @@ bool Player::UnEquip(const vector<string>& args) {
 	}
 	else
 	{
-		cout << "\n" << item->Name << " is not equipped.\n";
+		cout << "\n" << item->Name << " is not equipped.";
 		return false;
 	}
 
-	cout << "\nYou un-equip " << item->Name << "...\n";
+	cout << "\nYou un-equip " << item->Name << "...";
 
 	return true;
 }
@@ -207,18 +199,18 @@ bool Player::UnEquip(const vector<string>& args) {
 
 bool Player::UseObject(const vector<string> &args) {
 	// arg0 Use , arg1 Object, arg2 Action , arg3 ENTITY
-	if (Tool == NULL || Tool->Name != args[0]) {
+	if (Tool == NULL || !(CompareStrings(Tool->Name , args[0]))) {
 		cout << "\nYou dont have equiped " << args[0];
 		return false;
 	}
 
-	if (Tool->Name == "PDA") {
+	if (CompareStrings(Tool->Name,"PDA")) {
 		list<Entity*> CreaturesInRoom;
 		Parent->FindAll(CREATURE, CreaturesInRoom);
 
 		for (list<Entity*>::const_iterator it = CreaturesInRoom.begin(); it != CreaturesInRoom.cend(); ++it)
 		{
-			if ((*it)->Name == args[2]){
+			if (CompareStrings((*it)->Name,args[2])){
 				cout << "\nScanning and Making Profile of Suspect \n Profile:" << "\n" << (*it)->Name <<" "<< (*it)->Description;
 				// Create Note and Add To notebook
 				return true;
@@ -228,7 +220,7 @@ bool Player::UseObject(const vector<string> &args) {
 		return false;
 	}
 
-	if (Tool->Name == "Notebook") {
+	if (CompareStrings(Tool->Name,"Notebook")) {
 		list<Entity*> Notes;
 		Tool->FindAll(ITEM, Notes);
 
@@ -237,23 +229,23 @@ bool Player::UseObject(const vector<string> &args) {
 			return false;
 		}
 
-		if (args[1] == "List") {
+		if (CompareStrings(args[1],"LIST")) {
 			cout << "\nNotes in you're Notebook:";
 		}
 
 		for (list<Entity*>::const_iterator it = Notes.begin(); it != Notes.cend(); ++it)
 		{
-			if ((*it)->Name == args[2] && args[1] != "List") {
+			if (CompareStrings((*it)->Name,args[2]) && CompareStrings(args[1],"READ")) {
 				cout << "\nReading Note:"<<(*it)->Name << "\n Content:" << " " << (*it)->Description;
 				return true;
 			}
 			else {
-				cout << "\nReading Note:" << (*it)->Name << "\n Content:" << " " << (*it)->Description;
+				cout << "\nNote:" << (*it)->Name << " ,Content:" << " " << (*it)->Description;
 			}
 
 		}
 
-		if (args[1] != "List") {
+		if (!(CompareStrings(args[1],"LIST"))) {
 			cout << "\nThat Note is not in the Notebook";
 			return false;
 		}
@@ -266,42 +258,60 @@ void Player::CheckMap() {
 
 	for (list<Entity*>::const_iterator it = Locations.begin(); it != Locations.cend(); ++it)
 	{
-		cout << "\nName:" << (*it)->Name<<" Description:"<< (*it)->Description;
-		
+		cout << "\nRoom:" << (*it)->Name<<",Description:"<< (*it)->Description;
 	}
-
 	return;
+}
+
+bool Player::Sentence(const vector<string>& args) {
+	list<Entity*> CreaturesInRoom;
+	Parent->FindAll(CREATURE, CreaturesInRoom);
+	for (list<Entity*>::const_iterator it = CreaturesInRoom.begin(); it != CreaturesInRoom.cend(); ++it)
+	{
+		if (CompareStrings((*it)->Name,args[1])) {
+			cout << "\nThe Suspect:" << (*it)->Name << " is found to be guilty of the murder";
+			return true;
+		}
+
+		cout << "\nThe Suspect is not in the room";
+
+		return false;
+	}
 }
 
 void Player::Help() {
 
 	string message = "\nWelcome to my Zork Detective Game";
 
-	message += "\nAbout: In this game you must find the suspect that commit the murder you must analize evidence,corpse,talk to suspects and witness,";
-	message += "\nINSTRUCTIONS:";
+	message += "\nAbout: \nIn this game you must find the suspect that commit the murder you must analize evidence,\ncorpse,talk to suspects and witness,";
+	message += "\n\nINSTRUCTIONS:";
 
-	message += "\nPLAYER ACTIONS:";
+	message += "\n\nPLAYER ACTIONS:";
 
-	message += "\n\"Help\" = Display Instrucctions";
+	message += "\n\n\"Help\" = Display Instrucctions";
 	message += "\n\"Map\" = Display a list of the rooms";
 	message += "\n\"Quit\" = Close the game";
 	message += "\n\"Look\" = Show you a list of the characters and stuffs in the room";
-	message += "\n\"Inventary\" = Displays the items you have";
+	message += "\n\"Inventory\" = Displays the items you have";
 
 	// Two Parameters
-	message += "\n \"Look\" {ObjectName} ,this allows you to look inside Containers";
-	message += "\n \"Move\" {RoomName} ,this allows you to move between rooms";
-	message += "\n \"Take\" {ItemName} ,this allows you to take an item in the room";
-	message += "\n \"Equip\" {ItemName} ,this allows you to equip an item from you're inventory";
-	message += "\n \"UnEquip\" {ItemName} ,this allows you to Unequip an item and return it to the inventory";
-	message += "\n \"Talk\" {Character Name} ,this allows you to start a conversation with a character who is in the same room";
-	message += "\n \"Sentence\" {SuspectName} ,this allows you to end the game choosing who is the murder";
+	message += "\n\"Look\" {ObjectName} ,this allows you to look inside Containers";
+	message += "\n\"Move\" {RoomName} ,this allows you to move between rooms";
+	message += "\n\"Take\" {ItemName} ,this allows you to take an item in the room";
+	message += "\n\"Take\" {ItemName} in {ItemName} ,this allows you to take an item inside another item";
+	message += "\n\"Drop\" {ItemName} ,this allows you to drop an item in the room";
+	message += "\n\"Equip\" {ItemName} ,this allows you to equip an item from you're inventory";
+	message += "\n\"UnEquip\" {ItemName} ,this allows you to Unequip an item and return it to the inventory";
+	message += "\n\"Talk\" {Character Name} ,this allows you to start a conversation with a character who is in the same room";
+	message += "\n\"Sentence\" {SuspectName} ,this allows you to end the game choosing who is the murder";
 
 	// Three Parameters
-	message += "\nPLAYER TOOLS: \n You must have and equiped this items before you can use them.";
-	message + "\n Tools and how to use them:";
-	message += "\n \"PDA\" \"SCAN\" {EVIDENCE/CHARACTER} ,this allows you to search more info about characters or evidence and add a note to your notebook";
-	message += "\n \"Notebook\" \"READ\" {NoteName} ,this allows you to read a specific note";
-	message += "\n \"Notebook\" \"LIST\" \"NOTES\" ,Display all the notes in you're Notebook";
+	message += "\n\nPLAYER TOOLS: \n*You must have and equiped this items before you can use them.\n";
+	message + "Tools and how to use them:";
+	message += "\n\"PDA\" \"SCAN\" {EVIDENCE/CHARACTER} ,this allows you to search more info about characters or evidence \nand add a note to your notebook\n";
+	message += "\n\"Notebook\" \"READ\" {NoteName} ,this allows you to read a specific note";
+	message += "\n\"Notebook\" \"LIST\" \"NOTES\" ,Display all the notes in you're Notebook";
+
+	cout << message;
 	return;
 }
