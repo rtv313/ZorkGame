@@ -1,7 +1,7 @@
 #pragma once
 #include "Creature.h"
 #include "Exit.h"
-
+class Exit;
 class Player :
 	public Creature
 {
