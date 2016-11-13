@@ -8,18 +8,41 @@ World::World(){
 	Room * Witness = new Room("Witness", "Room where are the two witness of the murder");
 	Room * Office = new Room("Office","You're Personal office");
 	Room * Suspects = new Room("Suspects","Room where are the two suspects of the murder");
+	Room * Hallway = new Room("Hallway", "Room that connect every other room");
+	
+	Exit * HallwayForense = new Exit("Hallway-Forense","HallwayForenseRoom",Hallway,Forense);
+	Exit * HallwayEvidence = new Exit("Hallway-Evidence", "HallwayEvidenceRoom", Hallway, Evidence);
+	Exit * HallwayWitness = new Exit("Hallway-Witness", "HallwayWitnessRoom", Hallway, Witness);
+	Exit * HallwayOffice = new Exit("Hallway-Office", "HallwayOfficeRoom", Hallway, Office);
+	Exit * HallwaySuspects = new Exit("Hallway-Suspects", "HallwaySuspectsRoom", Hallway, Suspects);
+	
 
+	Exits.push_back(HallwayForense);
+	Exits.push_back(HallwayEvidence);
+	Exits.push_back(HallwayWitness);
+	Exits.push_back(HallwayOffice);
+	Exits.push_back(HallwaySuspects);
+
+	//Exits
+	Entities.push_back(HallwayEvidence);
+	Entities.push_back(HallwayForense);
+	Entities.push_back(HallwayWitness);
+	Entities.push_back(HallwayOffice);
+	Entities.push_back(HallwaySuspects);
+	//Rooms
 	Entities.push_back(Forense);
 	Entities.push_back(Evidence);
 	Entities.push_back(Witness);
 	Entities.push_back(Office);
 	Entities.push_back(Suspects);
+	Entities.push_back(Hallway);
 
 	Locations.push_back(Forense);
 	Locations.push_back(Evidence);
 	Locations.push_back(Witness);
 	Locations.push_back(Office);
 	Locations.push_back(Suspects);
+	Locations.push_back(Hallway);
 
 	////Office Objects
 	Item * Laptop = new Item("Laptop", "Help to get info about suspects", Office, TOOL);
@@ -90,14 +113,14 @@ void World::SendInstrucction(const vector<string>& args,bool &ExitFlag){
 	{
 
 	case 1:
-		if (CompareStrings(args[0],"Map")) {
+		if (CompareStrings(args[0],"Rooms")) {
 			player->CheckMap();
 		}
 		else if (CompareStrings(args[0],"Help")) {
 			player->Help();
 		}
 		else if (CompareStrings(args[0],"Look")) {
-			player->Look(args);
+			player->Look(args,Exits);
 		}
 		else if (CompareStrings(args[0],"Inventory")) {
 			player->Inventory();
@@ -109,7 +132,7 @@ void World::SendInstrucction(const vector<string>& args,bool &ExitFlag){
 
 	case 2:
 		if (CompareStrings(args[0], "Move")) {
-			player->Move(args);
+			player->Move(args,Exits);
 		}
 		else if (CompareStrings(args[0],"Equip")) {
 			player->Equip(args);
@@ -124,7 +147,7 @@ void World::SendInstrucction(const vector<string>& args,bool &ExitFlag){
 			player->Take(args);
 		}
 		else if (CompareStrings(args[0],"Look")) {
-			player->Look(args);
+			player->Look(args,Exits);
 		}
 		else if (CompareStrings(args[0],"Drop")){
 			player->Drop(args);

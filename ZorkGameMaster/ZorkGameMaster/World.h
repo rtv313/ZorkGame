@@ -8,6 +8,7 @@
 #include "Creature.h"
 #include "Player.h"
 #include "Helpers.h"
+#include "Exit.h"
 
 class World
 {
@@ -19,6 +20,7 @@ public:
 
 private:
 	vector<Entity*> Entities;
+	vector<Exit*> Exits;
 	list<Entity*> Locations;
 	Player * player;
 };

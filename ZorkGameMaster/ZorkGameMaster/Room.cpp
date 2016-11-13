@@ -16,8 +16,8 @@ Room::~Room()
 
 void Room::Look()const {
 
-	cout << "\nIn Room" << Name;
-	cout << "\nDescription" << Description;
+	cout << "\nIn Room " << Name;
+	cout << "\nDescription:" << Description;
 
 	// Displays Creatures in Room
 	for (list<Entity*>::const_iterator it = Container.begin(); it != Container.cend(); ++it) {

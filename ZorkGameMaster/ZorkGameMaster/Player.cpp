@@ -2,55 +2,53 @@
 #include "Player.h"
 
 
-Player::Player(const char* Name, const char* Description, Room* Room, const list<Entity*> Locations):Creature(Name,Description,Room,Locations,true)
-{
+Player::Player(const char* Name, const char* Description, Room* Room, const list<Entity*> Locations):Creature(Name,Description,Room,Locations,true){
 	Type = PLAYER;
 }
 
 
-Player::~Player()
-{
+Player::~Player(){
 }
 
 
-void Player::Look(const vector<string>& args) const {
-	if (args.size() > 1)
-	{
-		for (list<Entity*>::const_iterator it = Parent->Container.begin(); it != Parent->Container.cend(); ++it)
-		{
-			if (CompareStrings((*it)->Name,args[1])) // Look for certain object
-			{
+void Player::Look(const vector<string>& args,vector<Exit*>Exits) const{
+	if (args.size() > 1){
+		for (list<Entity*>::const_iterator it = Parent->Container.begin(); it != Parent->Container.cend(); ++it){
+			if (CompareStrings((*it)->Name,args[1])){ // Look for certain object
 				(*it)->Look();
 				return;
 			}
 		}
 	}
-	else
-	{
+	else{
 		Parent->Look(); // Watch  the things in the room 
+		for (vector<Exit*>::const_iterator it = Exits.begin(); it != Exits.cend(); ++it){
+			if ((*it)->Room1 == Parent || (*it)->Room2 == Parent){
+				cout << "\nDoor:" << (*it)->Name;
+			}
+		}
 	}
 }
 
-bool Player::Take(const vector<string>& args) {
+bool Player::Take(const vector<string>& args){
 
-	if (args.size() == 4) // Check in Container
-	{
+	if(args.size() == 4){ // Check in Container
+	
 		Item* item = (Item*)Parent->Find(args[3], ITEM); // First LOOK IN ROOM 
 
 		// we could pick something from a container in our inventory ...
-		if (item == NULL)
+		if (item == NULL) {
 			item = (Item*)Find(args[3], ITEM);
+		}
 
-		if (item == NULL)
-		{
+		if (item == NULL){
 			cout << "\nCannot find '" << args[3] << "' in this room or in your inventory.";
 			return false;
 		}
 
 		Item* subitem = (Item*)item->Find(args[1], ITEM);
 
-		if (subitem == NULL)
-		{
+		if (subitem == NULL){
 			cout << "\n" << item->Name << " does not contain '" << args[1] << "'.";
 			return false;
 		}
@@ -62,8 +60,7 @@ bool Player::Take(const vector<string>& args) {
 
 		Item* item = (Item*)Parent->Find(args[1], ITEM);
 
-		if (item == NULL)
-		{
+		if (item == NULL){
 			cout << "\nThere is no item here with that name.";
 			return false;
 		}
@@ -77,14 +74,13 @@ bool Player::Take(const vector<string>& args) {
 	return false;
 }
 
-bool Player::Drop(const vector<string>& args) {
+bool Player::Drop(const vector<string>& args){
 
-	if (args.size() == 2) // Drop Item in Room
-	{
+	if (args.size() == 2){ // Drop Item in Room
+	
 		Item* item = (Item*)Find(args[1], ITEM);
 
-		if (item == NULL)
-		{
+		if (item == NULL){
 			cout << "\nThere is no item on you with that name.";
 			return false;
 		}
@@ -95,20 +91,18 @@ bool Player::Drop(const vector<string>& args) {
 		return true;
 	}
 
-	if (args.size() == 4) // Drop Item in container
-	{
+	if (args.size() == 4){ // Drop Item in container
+	
 		Item* item = (Item*)Find(args[1], ITEM);
 
-		if (item == NULL)
-		{
+		if (item == NULL){
 			cout << "\nCan not find '" << args[1] << "' in your inventory.";
 			return false;
 		}
 
 		Item* container = (Item*)Parent->Find(args[3], ITEM);
 
-		if (container == NULL)
-		{
+		if (container == NULL){
 			container = (Item*)Find(args[3], ITEM);
 			cout << "\nCan not find '" << args[3] << "' in your inventory or in the room.";
 			return false;
@@ -123,18 +117,16 @@ bool Player::Drop(const vector<string>& args) {
 	return false;
 }
 
-void Player::Inventory()const {
+void Player::Inventory()const{
 	list<Entity*> items;
 	FindAll(ITEM,items);
 
-	if (items.size() == 0)
-	{
+	if (items.size() == 0){
 		cout << "\nYou do not own any item.";
 		return;
 	}
 
-	for (list<Entity*>::const_iterator it = items.begin(); it != items.cend(); ++it)
-	{
+	for (list<Entity*>::const_iterator it = items.begin(); it != items.cend(); ++it){
 		if (*it == Tool)
 			cout << "\n" << (*it)->Name << " (as Tool)";
 		else
@@ -143,17 +135,15 @@ void Player::Inventory()const {
 }
 
 
-bool Player::Equip(const vector<string>& args) {
+bool Player::Equip(const vector<string>& args){
 	Item* item = (Item*)Find(args[1], ITEM);
 
-	if (item == NULL)
-	{
+	if (item == NULL){
 		cout << "\nCannot find '" << args[1] << "' is not in your inventory.";
 		return false;
 	}
 
-	switch (item->Item_Type)
-	{
+	switch (item->Item_Type){
 	case TOOL:
 		Tool = item;
 		break;
@@ -168,14 +158,13 @@ bool Player::Equip(const vector<string>& args) {
 	return true;
 }
 
-bool Player::UnEquip(const vector<string>& args) {
+bool Player::UnEquip(const vector<string>& args){
 	if (!Alive)
 		return false;
 
 	Item* item = (Item*)Find(args[1], ITEM);
 
-	if (item == NULL)
-	{
+	if (item == NULL){
 		cout << "\n" << args[1] << " is not in your inventory.";
 		return false;
 	}
@@ -184,8 +173,7 @@ bool Player::UnEquip(const vector<string>& args) {
 		Tool = NULL;
 
 	}
-	else
-	{
+	else{
 		cout << "\n" << item->Name << " is not equipped.";
 		return false;
 	}
@@ -197,14 +185,14 @@ bool Player::UnEquip(const vector<string>& args) {
 
 
 
-bool Player::UseObject(const vector<string> &args) {
+bool Player::UseObject(const vector<string> &args){
 	// arg0 Use , arg1 Object, arg2 Action , arg3 ENTITY
 	if (Tool == NULL || !(CompareStrings(Tool->Name , args[0]))) {
 		cout << "\nYou dont have equiped " << args[0];
 		return false;
 	}
 
-	if (CompareStrings(Tool->Name,"PDA")) {
+	if (CompareStrings(Tool->Name,"PDA")){
 		list<Entity*> CreaturesInRoom;
 		Parent->FindAll(CREATURE, CreaturesInRoom);
 
@@ -220,11 +208,11 @@ bool Player::UseObject(const vector<string> &args) {
 		return false;
 	}
 
-	if (CompareStrings(Tool->Name,"Notebook")) {
+	if (CompareStrings(Tool->Name,"Notebook")){
 		list<Entity*> Notes;
 		Tool->FindAll(ITEM, Notes);
 
-		if (Notes.size() <= 0) {
+		if (Notes.size() <= 0){
 			cout << "\nYou dont have notes";
 			return false;
 		}
@@ -233,9 +221,8 @@ bool Player::UseObject(const vector<string> &args) {
 			cout << "\nNotes in you're Notebook:";
 		}
 
-		for (list<Entity*>::const_iterator it = Notes.begin(); it != Notes.cend(); ++it)
-		{
-			if (CompareStrings((*it)->Name,args[2]) && CompareStrings(args[1],"READ")) {
+		for (list<Entity*>::const_iterator it = Notes.begin(); it != Notes.cend(); ++it){
+			if (CompareStrings((*it)->Name,args[2]) && CompareStrings(args[1],"READ")){
 				cout << "\nReading Note:"<<(*it)->Name << "\n Content:" << " " << (*it)->Description;
 				return true;
 			}
@@ -245,7 +232,7 @@ bool Player::UseObject(const vector<string> &args) {
 
 		}
 
-		if (!(CompareStrings(args[1],"LIST"))) {
+		if (!(CompareStrings(args[1],"LIST"))){
 			cout << "\nThat Note is not in the Notebook";
 			return false;
 		}
@@ -254,20 +241,18 @@ bool Player::UseObject(const vector<string> &args) {
 
 }
 
-void Player::CheckMap() {
+void Player::CheckMap(){
 
-	for (list<Entity*>::const_iterator it = Locations.begin(); it != Locations.cend(); ++it)
-	{
+	for (list<Entity*>::const_iterator it = Locations.begin(); it != Locations.cend(); ++it){
 		cout << "\nRoom:" << (*it)->Name<<",Description:"<< (*it)->Description;
 	}
 	return;
 }
 
-bool Player::Sentence(const vector<string>& args) {
+bool Player::Sentence(const vector<string>& args){
 	list<Entity*> CreaturesInRoom;
 	Parent->FindAll(CREATURE, CreaturesInRoom);
-	for (list<Entity*>::const_iterator it = CreaturesInRoom.begin(); it != CreaturesInRoom.cend(); ++it)
-	{
+	for (list<Entity*>::const_iterator it = CreaturesInRoom.begin(); it != CreaturesInRoom.cend(); ++it){
 		if (CompareStrings((*it)->Name,args[1])) {
 			cout << "\nThe Suspect:" << (*it)->Name << " is found to be guilty of the murder";
 			return true;
@@ -279,7 +264,27 @@ bool Player::Sentence(const vector<string>& args) {
 	}
 }
 
-void Player::Help() {
+bool Player::Move(const vector<string>& args, vector<Exit*>Exits){
+
+	for (vector<Exit*>::const_iterator exit = Exits.begin(); exit != Exits.cend(); ++exit){
+		if ((*exit)->Room1 == Parent && CompareStrings((*exit)->Room2->Name,args[1])){
+			ChangeParent((*exit)->Room2);
+			cout << "\n" << Name << " is in " << (*exit)->Room2->Name;
+			return true;
+		}
+
+		if ((*exit)->Room2 == Parent && CompareStrings((*exit)->Room1->Name, args[1])){
+			ChangeParent((*exit)->Room1);
+			cout << "\n" << Name << " is in " << (*exit)->Room1->Name;
+			return true;
+		}
+	}
+	cout << "\nYou cant get to that room from here or that room doesn't exist";
+
+	return false;
+}
+
+void Player::Help(){
 
 	string message = "\nWelcome to my Zork Detective Game";
 
@@ -289,7 +294,7 @@ void Player::Help() {
 	message += "\n\nPLAYER ACTIONS:";
 
 	message += "\n\n\"Help\" = Display Instrucctions";
-	message += "\n\"Map\" = Display a list of the rooms";
+	message += "\n\"Rooms\" = Display a list of the rooms";
 	message += "\n\"Quit\" = Close the game";
 	message += "\n\"Look\" = Show you a list of the characters and stuffs in the room";
 	message += "\n\"Inventory\" = Displays the items you have";
