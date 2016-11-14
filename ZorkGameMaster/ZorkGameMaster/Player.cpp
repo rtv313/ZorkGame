@@ -332,7 +332,7 @@ void Player::Help(){
 	// Three Parameters
 	message += "\n\nPLAYER TOOLS: \n*You must have and equiped this items before you can use them.\n";
 	message + "Tools and how to use them:";
-	message += "\n\"PDA\" \"SCAN\" {EVIDENCE/CHARACTER} ,this allows you to search more info about characters or evidence \nand add a note to your notebook\n";
+	message += "\n\"PDA\" \"SCAN\" {EVIDENCE/CHARACTER} ,this allows you to search more info about characters or evidence \nand add a note to your notebook,HINT:The object must be in the room for scan not inside other object";
 	message += "\n\"Notebook\" \"READ\" {NoteName} ,this allows you to read a specific note";
 	message += "\n\"Notebook\" \"LIST\" \"NOTES\" ,Display all the notes in you're Notebook";
 
