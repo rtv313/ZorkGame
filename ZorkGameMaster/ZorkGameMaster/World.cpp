@@ -56,6 +56,7 @@ World::World(){
 	////Evidence Room Objects
 	Item * EvidenceBox = new Item("EvidenceBox","Contains objects related to the murder",Evidence,TOOL);
 	Item * Pistol = new Item("Pistol", "Pistol found in the murder scene", EvidenceBox, EVIDENCE);
+	Item * PistolNote = new Item("Pistol Scan","The Gun has fingerprints from",Pistol,NOTE);
 	Item * Pictures = new Item("Pictures", "Pictures take it from the murder scene", EvidenceBox, EVIDENCE);
 
 	////NPC Objects 
@@ -72,7 +73,7 @@ World::World(){
 	Entities.push_back(prisioner1);
 	Entities.push_back(Notebook); 
 	Entities.push_back(Note1);
-
+	Entities.push_back(PistolNote);
 	vector<string> args;
 	args.push_back("Take");
 	args.push_back("Notebook");

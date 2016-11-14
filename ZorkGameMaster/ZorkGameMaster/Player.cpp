@@ -193,19 +193,7 @@ bool Player::UseObject(const vector<string> &args){
 	}
 
 	if (CompareStrings(Tool->Name,"PDA")){
-		list<Entity*> CreaturesInRoom;
-		Parent->FindAll(CREATURE, CreaturesInRoom);
-
-		for (list<Entity*>::const_iterator it = CreaturesInRoom.begin(); it != CreaturesInRoom.cend(); ++it)
-		{
-			if (CompareStrings((*it)->Name,args[2])){
-				cout << "\nScanning and Making Profile of Suspect \n Profile:" << "\n" << (*it)->Name <<" "<< (*it)->Description;
-				// Create Note and Add To notebook
-				return true;
-			}
-		}
-		cout << "\nThe Suspect is not in the room";
-		return false;
+		return ScanObject(args);
 	}
 
 	if (CompareStrings(Tool->Name,"Notebook")){
@@ -250,18 +238,13 @@ void Player::CheckMap(){
 }
 
 bool Player::Sentence(const vector<string>& args){
-	list<Entity*> CreaturesInRoom;
-	Parent->FindAll(CREATURE, CreaturesInRoom);
-	for (list<Entity*>::const_iterator it = CreaturesInRoom.begin(); it != CreaturesInRoom.cend(); ++it){
-		if (CompareStrings((*it)->Name,args[1])) {
-			cout << "\nThe Suspect:" << (*it)->Name << " is found to be guilty of the murder";
-			return true;
-		}
-
-		cout << "\nThe Suspect is not in the room";
-
-		return false;
+	Entity* Suspect =Parent->Find(args[1], CREATURE);
+	if (Suspect != NULL) {
+		cout << "\nThe Suspect:" << Suspect->Name << " is found to be guilty of the murder";
+		return true;
 	}
+	cout << "\nThat Suspect is not in the room";
+	return false;
 }
 
 bool Player::Move(const vector<string>& args, vector<Exit*>Exits){
@@ -281,6 +264,42 @@ bool Player::Move(const vector<string>& args, vector<Exit*>Exits){
 	}
 	cout << "\nYou cant get to that room from here or that room doesn't exist";
 
+	return false;
+}
+
+bool Player::ScanObject(const vector<string>&args){
+	Item* Notebook = (Item*)Find("Notebook", ITEM);
+	list<Entity*> PosibleNotes;
+	Entity* item = Parent->Find(args[2], ITEM); // First Search for items 
+
+	if(item != NULL){ 
+		item->FindAll(ITEM, PosibleNotes);
+	}else{
+		item = Parent->Find(args[2], CREATURE);
+		if (item != NULL) {
+			item->FindAll(ITEM, PosibleNotes);
+		}
+		else {
+			cout << "\nthat object doesn't exist or cannot be scanned";
+			return false;
+		}
+	}
+
+	if (Notebook == NULL) {
+		cout << "\n You dont have the notebook, you need it for add Notes";
+	}
+
+	for (list<Entity*>::const_iterator it = PosibleNotes.begin(); it != PosibleNotes.cend(); ++it) {
+		if ((((Item*)(*it))->Item_Type == NOTE)) {
+			if (Notebook != NULL) {
+				(*it)->ChangeParent(Notebook);
+				cout << "\nNote added to Notebook";
+			}
+			cout << "\nNote: " << (*it)->Name << " Description: " << (*it)->Description;
+			return true;
+		}
+	}
+	cout << "\nThe object has been already scan check you're notes";
 	return false;
 }
 

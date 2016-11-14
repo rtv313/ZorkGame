@@ -81,8 +81,7 @@ Entity* Entity::Find(const string& Name, EntityType Type) const {
 	return NULL;
 }
 
-void Entity::FindAll(EntityType Type, list<Entity*>& ListToFill) const
-{
+void Entity::FindAll(EntityType Type, list<Entity*>& ListToFill) const {
 	for (list<Entity*>::const_iterator it = Container.begin(); it != Container.cend(); ++it)
 	{
 		if ((*it)->Type == Type) {

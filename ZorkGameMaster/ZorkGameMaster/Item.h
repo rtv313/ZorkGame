@@ -7,7 +7,8 @@ enum ItemType
 	TOOL,
 	EVIDENCE,
 	NOTE,
-	NONE
+	NONE,
+	SCAN
 };
 
 class Item :
