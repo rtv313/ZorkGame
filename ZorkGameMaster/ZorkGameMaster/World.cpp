@@ -64,10 +64,11 @@ World::World(){
 	vector <string> QuestionsPrisioner1;
 	QuestionsPrisioner1.push_back("Question1?");
 	QuestionsPrisioner1.push_back("Question2?");
-
+	QuestionsPrisioner1.push_back("bye");
 	vector <string> AnswerPrisioner1;
-	AnswerPrisioner1.push_back("Answer1?");
-	AnswerPrisioner1.push_back("Answer2?");
+	AnswerPrisioner1.push_back("Answer1");
+	AnswerPrisioner1.push_back("Answer2");
+	AnswerPrisioner1.push_back("Answer3");
 
 	Npc * prisioner1= new Npc("Prisioner1", "Suspect", Suspects, Locations,true, QuestionsPrisioner1,AnswerPrisioner1);
 	Item * PDA = new Item("PDA", "PDA for scann and get info", Suspects, TOOL);

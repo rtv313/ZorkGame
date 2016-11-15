@@ -16,18 +16,23 @@ Npc::~Npc()
 void Npc::Speak() {
 	while (true) {
 		int index = 0;
-		int option;
+		int option = 0;
 		for (vector<string>::const_iterator it = Questions.begin(); it != Questions.cend(); ++it) {
-			cout << "\n" << index << " " << *it;
+			cout <<"\n" << index << " " << *it;
 			++index;
 		}
-		cout << "\nSelect Dialog Option\n";
+		cout <<"\nSelect Dialog Option\n";
 		cin >> option;
-		if (option >= 0 && option < Answers.size()) {
-			cout << "\n" << Name << ":" << Answers[option];
+
+		if (option == (Answers.size() - 1)) {
+			cout << "\n" << Name << ":" << Answers[option] << "\n";
 			return;
+		}
+
+		if (option >= 0 && option < Answers.size()) {
+			cout << "\n" << Name << ":" << Answers[option]<<"\n";
 		}else{
-			cout << "\nPardon I dont understand(Select a valid choise)";
+			cout <<"\nPardon I dont understand(Select a valid choise)";
 			return;
 		}
 	}
