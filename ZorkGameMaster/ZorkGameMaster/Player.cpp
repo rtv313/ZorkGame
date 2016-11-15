@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "Player.h"
-
+#include "Npc.h"
 
 Player::Player(const char* Name, const char* Description, Room* Room, const list<Entity*> Locations):Creature(Name,Description,Room,Locations,true){
 	Type = PLAYER;
@@ -238,13 +238,23 @@ void Player::CheckMap(){
 }
 
 bool Player::Sentence(const vector<string>& args){
-	Entity* Suspect =Parent->Find(args[1], CREATURE);
+	Entity* Suspect =Parent->Find(args[1], NPC);
 	if (Suspect != NULL) {
 		cout << "\nThe Suspect:" << Suspect->Name << " is found to be guilty of the murder";
 		return true;
 	}
 	cout << "\nThat Suspect is not in the room";
 	return false;
+}
+
+void Player::Talk(const vector<string>& args) {
+	Npc* Character =(Npc *) Parent->Find(args[1], NPC);
+	if (Character != NULL) {
+		Character->Speak();
+		return;
+	}
+	cout << "\nThat Suspect is not in the room\n";
+	return;
 }
 
 bool Player::Move(const vector<string>& args, vector<Exit*>Exits){

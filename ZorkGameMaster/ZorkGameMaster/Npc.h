@@ -1,13 +1,14 @@
 #pragma once
-#include "Creature.h"
 #include "Player.h"
+#include "Dialog.h"
 class Npc :
 	public Creature
 {
 public:
-	Npc(const char* Name, const char* Description, Room* Room, const list<Entity*> Locations,bool Alive);
+	Npc(const char* Name, const char* Description, Room* Room, const list<Entity*> Locations,bool Alive,vector<string>&Questions, vector <string>&Answers);
 	~Npc();
-	vector <string> Conversations;
-	void Speak(Player* player);
+	vector <string> Questions;
+	vector <string> Answers;
+	void Speak( );
 };
 

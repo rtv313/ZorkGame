@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "World.h"
-
+#include "Npc.h"
 
 World::World(){
 	Room * Forense = new Room("Forense","Forense Room Here is where we analyzed dead bodies");
@@ -61,7 +61,15 @@ World::World(){
 
 	////NPC Objects 
 
-	Creature * prisioner1= new Creature("Prisioner1", "Suspect", Suspects, Locations,true);
+	vector <string> QuestionsPrisioner1;
+	QuestionsPrisioner1.push_back("Question1?");
+	QuestionsPrisioner1.push_back("Question2?");
+
+	vector <string> AnswerPrisioner1;
+	AnswerPrisioner1.push_back("Answer1?");
+	AnswerPrisioner1.push_back("Answer2?");
+
+	Npc * prisioner1= new Npc("Prisioner1", "Suspect", Suspects, Locations,true, QuestionsPrisioner1,AnswerPrisioner1);
 	Item * PDA = new Item("PDA", "PDA for scann and get info", Suspects, TOOL);
 	player = new Player("Player","Player Test", Suspects,Locations);
 
@@ -142,7 +150,7 @@ void World::SendInstrucction(const vector<string>& args,bool &ExitFlag){
 			player->UnEquip(args);
 		}
 		else if (CompareStrings(args[0],"Talk")) {
-			cout << "\nTalk";
+			player->Talk(args);
 		}
 		else if (CompareStrings(args[0],"Take")) {
 			player->Take(args);

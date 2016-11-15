@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "Room.h"
+#include "Npc.h"
 #include <iostream>
 
 
@@ -20,23 +21,22 @@ void Room::Look()const {
 	cout << "\nDescription:" << Description;
 
 	// Displays Creatures in Room
-	for (list<Entity*>::const_iterator it = Container.begin(); it != Container.cend(); ++it) {
-		if ((*it)->Type == CREATURE) {
+	for (list<Entity*>::const_iterator it = Container.begin(); it != Container.cend(); ++it){
+		if ((*it)->Type == CREATURE){
 			Creature * creature = (Creature*)*it;
 			cout << "\nCharacter:" << creature->Name;
 		}
-		else if ((*it)->Type == PLAYER) {
+		else if ((*it)->Type == PLAYER){
 			Player * player = (Player*)*it;
 			cout << "\nPlayer:" << player->Name;
 		}
-	}
+		else if ((*it)->Type == NPC){
+			Npc * npc = (Npc*)*it;
+			cout << "\nCharacter:" << npc->Name;
 
-	// Displays Items in Room
-	for (list<Entity*>::const_iterator it = Container.begin(); it != Container.cend(); ++it){
-		if ((*it)->Type == ITEM){
+		}else if ((*it)->Type == ITEM) {
 			Item* item = (Item*)*it;
 			cout << "\nItem:" << item->Name;
 		}
 	}
-
 }

@@ -21,6 +21,7 @@ public:
 	bool Sentence(const vector<string>&args);
 	bool Move(const vector<string>&args,vector<Exit*>Exits);
 	bool ScanObject(const vector<string>&args);
+	void Talk(const vector<string>&args);
 };
 
 
