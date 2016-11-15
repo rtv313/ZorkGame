@@ -179,8 +179,11 @@ void World::SendInstrucction(const vector<string>& args,bool &ExitFlag){
 
 		break;
 	case 4:
-		if (CompareStrings(args[0],"Take")) {
+		if (CompareStrings(args[0], "Take") && CompareStrings(args[2],"in")) {
 			player->Take(args);
+		}
+		else {
+			cout << "\n Bad Instruction";
 		}
 		break;
 

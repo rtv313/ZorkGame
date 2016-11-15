@@ -192,8 +192,12 @@ bool Player::UseObject(const vector<string> &args){
 		return false;
 	}
 
-	if (CompareStrings(Tool->Name,"PDA")){
+	if (CompareStrings(Tool->Name,"PDA") && CompareStrings("Scan",args[1])){
 		return ScanObject(args);
+	}
+	else {
+		cout << "\n Bad Instruction";
+		return false;
 	}
 
 	if (CompareStrings(Tool->Name,"Notebook")){
@@ -253,7 +257,7 @@ void Player::Talk(const vector<string>& args) {
 		Character->Speak();
 		return;
 	}
-	cout << "\nThat Suspect is not in the room\n";
+	cout << "\nThat Suspect is not in the room";
 	return;
 }
 
@@ -285,7 +289,7 @@ bool Player::ScanObject(const vector<string>&args){
 	if(item != NULL){ 
 		item->FindAll(ITEM, PosibleNotes);
 	}else{
-		item = Parent->Find(args[2], CREATURE);
+		item = Parent->Find(args[2], NPC);
 		if (item != NULL) {
 			item->FindAll(ITEM, PosibleNotes);
 		}
