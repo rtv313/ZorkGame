@@ -14,7 +14,6 @@ Npc::~Npc()
 }
 
 void Npc::Speak() {
-	cin.clear();
 	while (true) {
 		int index = 0;
 		int option = 0;
@@ -24,11 +23,11 @@ void Npc::Speak() {
 		}
 		cout << "\n";
 		cout << "\nSelect Dialog Option\n";
-		cin.clear();
-		cin.ignore(numeric_limits<streamsize>::max(), '\n');
+		
 		
 		cin >> option;
-
+		cin.clear();
+		cin.ignore(numeric_limits<streamsize>::max(), '\n');
 		if (option == (Answers.size() - 1)) {
 			cout << "\n" << Name << ":" << Answers[option] << "\n";
 			return;
@@ -38,7 +37,7 @@ void Npc::Speak() {
 			cout << "\n" << Name << ":" << Answers[option]<<"\n";
 		}else{
 			cout <<"\nPardon I dont understand(Select a valid choise)";
-			return;
+			/*return;*/
 		}
 	}
 }
