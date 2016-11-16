@@ -21,7 +21,11 @@ void Npc::Speak() {
 			cout <<"\n" << index << " " << *it;
 			++index;
 		}
-		cout <<"\nSelect Dialog Option\n";
+		cout << "\n";
+		cout << "\nSelect Dialog Option\n";
+		cin.clear();
+		cin.ignore(numeric_limits<streamsize>::max(), '\n');
+		
 		cin >> option;
 
 		if (option == (Answers.size() - 1)) {

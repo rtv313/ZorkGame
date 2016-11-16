@@ -195,10 +195,10 @@ bool Player::UseObject(const vector<string> &args){
 	if (CompareStrings(Tool->Name,"PDA") && CompareStrings("Scan",args[1])){
 		return ScanObject(args);
 	}
-	else {
+	/*else {
 		cout << "\n Bad Instruction";
 		return false;
-	}
+	}*/
 
 	if (CompareStrings(Tool->Name,"Notebook")){
 		list<Entity*> Notes;
@@ -219,7 +219,7 @@ bool Player::UseObject(const vector<string> &args){
 				return true;
 			}
 			else {
-				cout << "\nNote:" << (*it)->Name << " ,Content:" << " " << (*it)->Description;
+				cout << "\nNote:" << (*it)->Name;
 			}
 
 		}
