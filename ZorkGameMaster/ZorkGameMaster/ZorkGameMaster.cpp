@@ -22,8 +22,8 @@ int main()
 	args.reserve(10);
 	World MyWorld;
 	bool ExitFlag = false;
-	cout << "Welcome to my Zork Detective Game\n";
-	cout << "--------------\n";
+	
+	cout << "\n--------------";
 	
 	while (1) {
 		if (_kbhit() != 0) {

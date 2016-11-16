@@ -14,6 +14,7 @@ Npc::~Npc()
 }
 
 void Npc::Speak() {
+	cin.clear();
 	while (true) {
 		int index = 0;
 		int option = 0;

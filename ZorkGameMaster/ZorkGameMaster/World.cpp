@@ -147,14 +147,11 @@ World::World(){
 	Npc * PoliceOfficer = new Npc("Officer", "Witness", Hallway, Locations, true, QuestionsPoliceOfficer, AnswersPoliceOfficer);
 	Entities.push_back(PoliceOfficer);
 	
-
-
-	
 	player = new Player("Player","Detective", Hallway,Locations);
 
-	
-	
-	
+	cout << "\nDETECTIVE ZORK GAME!!";
+	cout << "\nThe objective of this game is search info by talking with Witness,Suspects,and Scanning Evidence, When you have enough data you can sentence one of the suspects and finish the game be careful that you dont sentence the wrong person.";
+	cout << "\nUse \"Help\" for know how to interact";
 	
 
 }
