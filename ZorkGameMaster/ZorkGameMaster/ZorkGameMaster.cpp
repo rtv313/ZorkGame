@@ -23,7 +23,7 @@ int main()
 	World MyWorld;
 	bool ExitFlag = false;
 	
-	cout << "\n--------------";
+	cout << "\n--------------\n";
 	
 	while (1) {
 		if (_kbhit() != 0) {

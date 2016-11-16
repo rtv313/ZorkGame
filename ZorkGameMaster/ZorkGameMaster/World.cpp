@@ -49,11 +49,11 @@ World::World(){
 	Entities.push_back(EvidenceBox);
 
 	Item * Pistol = new Item("Pistol", "Pistol found in the murder scene", EvidenceBox, EVIDENCE);
-	Item * PistolNote = new Item("Pistol Scan","The Gun has fingerprints from John",Pistol,NOTE);
+	Item * PistolNote = new Item("Pistol","The Gun has fingerprints from John",Pistol,NOTE);
 	Entities.push_back(PistolNote);
 
 	Item * Pictures = new Item("Pictures", "Pictures take it from the murder scene", EvidenceBox, EVIDENCE);
-	Item * PictureslNote = new Item("Pictures Scan", "The pictures shows that in the room was a fight", Pictures, NOTE);
+	Item * PictureslNote = new Item("Pictures", "The pictures shows that in the room was a fight", Pictures, NOTE);
 	Entities.push_back(PictureslNote);
 	////Office Room Objects
 	Item * PDA = new Item("PDA", "PDA for scann and get info", Office, TOOL);
@@ -66,7 +66,7 @@ World::World(){
 	////NPC Suspect1
 	vector <string> QuestionsPrisioner1;
 	QuestionsPrisioner1.push_back("Tell me John what was you're relation with the victim");
-	QuestionsPrisioner1.push_back("What you were doom in the murder scene?");
+	QuestionsPrisioner1.push_back("What you were doing in the murder scene?");
 	QuestionsPrisioner1.push_back("Bye it's all for now");
 	vector <string> AnswerPrisioner1;
 	AnswerPrisioner1.push_back("I am her boyfriend,I loved sarah and I just try to save her and protect her");
