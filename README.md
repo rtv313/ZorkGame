@@ -6,6 +6,11 @@ Raul Rodolfo Trevino Vazquez
 This Zork game is the first project for the UPC VideoGames Master Degree.In this game you are a detective that must find who is the murder by asking the witness,suspects, and analyzing the evidence,once you find everything you must decide who is the murderer
 beware you can sentence the suspect at any momento, so before dictate the sentence be sure who is the true murder.
 
+Sometimes you want bullet points:
+
+* Start a line with a star
+* Profit!
+
 ###Instructions:
 *"Help" = Display Instrucctions
 *"Rooms" = Display a list of the rooms
