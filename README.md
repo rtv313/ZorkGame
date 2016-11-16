@@ -6,6 +6,14 @@ Raul Rodolfo Trevino Vazquez
 This Zork game is the first project for the UPC VideoGames Master Degree.In this game you are a detective that must find who is the murder by asking the witness,suspects, and analyzing the evidence,once you find everything you must decide who is the murderer
 beware you can sentence the suspect at any momento, so before dictate the sentence be sure who is the true murder.
 
+###Link Github
+https://github.com/rtv313/ZorkGame - automatic!
+[GitHub](https://github.com/rtv313/ZorkGame)
+
+###Link Licence
+https://github.com/rtv313/ZorkGame/blob/master/LICENSE - automatic!
+[License](https://github.com/rtv313/ZorkGame/blob/master/LICENSE)
+
 ###Instructions:
 
 * "Help" = Display Instrucctions
