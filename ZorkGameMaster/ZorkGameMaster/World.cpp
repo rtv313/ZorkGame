@@ -224,7 +224,14 @@ void World::SendInstrucction(const vector<string>& args,bool &ExitFlag){
 
 	case 3:
 		if (CompareStrings(args[0],"PDA") || CompareStrings(args[0],"Notebook")) {
-			player->UseObject(args);
+			if (CompareStrings(args[1], "LIST") || CompareStrings(args[1], "READ") || CompareStrings(args[1], "SCAN")) {
+				player->UseObject(args);
+			}
+			else
+			{
+				cout << "\n Bad Instruction";
+			}
+			
 		}else {
 			cout << "\n Bad Instruction";
 		}
