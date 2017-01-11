@@ -11,7 +11,7 @@ https://github.com/rtv313/ZorkGame - automatic!
 [GitHub](https://github.com/rtv313/ZorkGame)
 
 
-
+<a href="https://github.com/rtv313/ZorkGame" class="btn">View on GitHub</a>
 
 ###Link Licence
 https://github.com/rtv313/ZorkGame/blob/master/LICENSE - automatic!
