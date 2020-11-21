@@ -2,22 +2,22 @@
 Master 1st Project testing 
 ###Author
 Raul Rodolfo Trevino Vazquez
-###About:
+### About:
 This Zork game is the first project for the UPC VideoGames Master Degree.In this game you are a detective that must find who is the murder by asking the witness,suspects, and analyzing the evidence,once you find everything you must decide who is the murderer of Sarah
 beware you can sentence the suspect at any moment, so before dictate the sentence be sure who is the true murder.
 
-###Link Github
+### Link Github
 https://github.com/rtv313/ZorkGame - automatic!
 [GitHub](https://github.com/rtv313/ZorkGame)
 
 
 <a href="https://github.com/rtv313/ZorkGame" class="btn">View on GitHub</a>
 
-###Link Licence
+### Link Licence
 https://github.com/rtv313/ZorkGame/blob/master/LICENSE - automatic!
 [License](https://github.com/rtv313/ZorkGame/blob/master/LICENSE)
 
-###Instructions:
+### Instructions:
 
 * "Help" = Display Instrucctions
 * "Rooms" = Display a list of the rooms
@@ -34,7 +34,7 @@ https://github.com/rtv313/ZorkGame/blob/master/LICENSE - automatic!
 * "Talk" {Character Name} ,this allows you to start a conversation with a character who is in the same room
 * "Sentence" {SuspectName} ,this allows you to end the game choosing who is the murder
 
-#####PLAYER TOOLS:
+##### PLAYER TOOLS:
 
 You must have and equiped this items before you can use them.
 
@@ -42,7 +42,7 @@ You must have and equiped this items before you can use them.
 * "Notebook" "READ" {NoteName} ,this allows you to read a specific note
 * "Notebook" "LIST" "NOTES" ,Display all the notes in you're Notebook
 
-###Walkthrough
+### Walkthrough
 
 * Look
 * Rooms
